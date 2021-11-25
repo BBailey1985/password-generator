@@ -9,7 +9,7 @@ var specialCharacters = " !#$%&'*-/:<=>?@^_`~";
 var password = "";
 var passwordAnswers = [];
 
-
+// generate password function
 var generatePassword = function() {
   
   //prompt for password length
@@ -17,6 +17,7 @@ var generatePassword = function() {
   // validate passLength answer
   if (passLength === "" || passLength === null || passLength < 8 || passLength > 128) {
     alert("Response not valid. Please try again.");
+    return generatePassword();
   }
   console.log(passLength);
 
@@ -59,23 +60,18 @@ var generatePassword = function() {
   } else if (!passSpecial) {
     alert("Wow...ok")
   }
-
   console.log(passwordAnswers);
 
-  var newPassString = passwordAnswers.join("");
+    //create for loop to choose password characters
+    var passCombine = passwordAnswers.join("");
 
 
-  for (var i = 0; i <= passLength; i++) {
-      var passRandom = newPassString.charAt(Math.floor(Math.random() * newPassString.length));
-      password = password.concat(passRandom);
-  }
+    for (var i = 0; i <= passLength; i++) {
+        var passRandom = passCombine.charAt(Math.floor(Math.random() * passCombine.length));
+        password = password.concat(passRandom);
+    }
     return password;
 }
-
-// make a loop to grab passwordAnswers
-// for (var i = 0; i <=passLength; i++) {
-//   var passwordRandom = 
-// }
 
 // Write password to the #password input
 function writePassword() {
@@ -85,7 +81,6 @@ function writePassword() {
   passwordText.value = password;
 
 }
-
 // Add event listener to generate button
 generateBtnEl.addEventListener("click", writePassword);
 
